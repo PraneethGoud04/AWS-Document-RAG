@@ -29,7 +29,7 @@ flowchart TD
     A --> R[Retriever Lambda]
     R --> QE[Generate Query Embedding]
     QE --> T
-    V --> SIM[NumPy Similarity Search]
+    V --> SIM[Similarity Search]
     QE --> SIM
     SIM --> K[Top-K Relevant Chunks]
     K --> A
@@ -73,7 +73,7 @@ flowchart TD
 | OCR | Amazon Rekognition |
 | Embeddings | Amazon Bedrock Titan Embeddings V2 |
 | Answer generation | Amazon Bedrock Nova Micro |
-| Similarity calculation | NumPy |
+| Similarity calculation |
 | Evaluation | Python and Requests |
 
 ## Project Structure
@@ -203,20 +203,3 @@ This implementation does not use a dedicated vector database. A vector index may
 - Monitor AWS service usage and charges, especially OCR and model inference.
 - Configure appropriate Lambda timeouts, memory limits, and error handling.
 
-## Limitations
-
-- Retrieval scans embedding JSON files in S3 rather than using a dedicated vector index.
-- OCR quality can vary with scan quality and document layout.
-- Structured-data extraction based on heuristics may not correctly interpret every table.
-- Answer quality depends on extraction quality, chunking, retrieval relevance, and the language model.
-
-## Future Improvements
-
-- Add broader automated evaluation and regression tests.
-- Improve table extraction and OCR validation.
-- Introduce a scalable vector index when needed.
-- Add authentication, monitoring, and infrastructure-as-code deployment.
-
-## License
-
-Add a license if you intend to permit reuse or redistribution of this project.
